@@ -1,0 +1,1142 @@
+{
+  "note_to_author": "このファイルはドラフトです。review_needed: true が付いている問題は、公開前に必ずご自身の専門知識で内容を確認・修正してください。それ以外の問題も一通り目を通すことを推奨します。",
+  "themes": [
+    {
+      "id": 1,
+      "name": "服飾史"
+    },
+    {
+      "id": 2,
+      "name": "着物の各部位名称"
+    },
+    {
+      "id": 3,
+      "name": "文様の説明(幾何学・吉祥・有職の3分類)"
+    },
+    {
+      "id": 4,
+      "name": "男女の着物の違い"
+    },
+    {
+      "id": 5,
+      "name": "たたみ方の順序"
+    },
+    {
+      "id": 6,
+      "name": "三原組織"
+    },
+    {
+      "id": 7,
+      "name": "織物の種類(羽二重・塩瀬・縮緬)"
+    },
+    {
+      "id": 8,
+      "name": "染物の種類(加賀友禅・京友禅・江戸友禅)"
+    },
+    {
+      "id": 9,
+      "name": "着用時季"
+    },
+    {
+      "id": 10,
+      "name": "格の合わせ方"
+    },
+    {
+      "id": 11,
+      "name": "紋の種類・大きさ"
+    },
+    {
+      "id": 12,
+      "name": "帯の種類"
+    },
+    {
+      "id": 13,
+      "name": "半衿・草履など礼装小物の正誤判定"
+    },
+    {
+      "id": 14,
+      "name": "着物と小物の合わせ方"
+    },
+    {
+      "id": 15,
+      "name": "着付けの心得・作法"
+    },
+    {
+      "id": 16,
+      "name": "美容師法に関する正誤"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q2-sample1",
+      "theme_id": 2,
+      "type": "matching",
+      "prompt": "次の着物の部位の説明に合う名称を、下記の選択肢から1つずつ選びなさい。",
+      "items": [
+        {
+          "id": "a",
+          "label": "着物の背中心の縫い目"
+        },
+        {
+          "id": "b",
+          "label": "袖付けの下に開いている、女物にある部分"
+        }
+      ],
+      "options": [
+        {
+          "id": "opt1",
+          "text": "背縫い"
+        },
+        {
+          "id": "opt2",
+          "text": "身八つ口"
+        }
+      ],
+      "answer": {
+        "a": "opt1",
+        "b": "opt2"
+      },
+      "explanation": "背中心の縫い目を背縫い、女物の袖付け下の開きを身八つ口という。",
+      "points": 2,
+      "review_needed": false
+    },
+    {
+      "id": "q6-sample1",
+      "theme_id": 6,
+      "type": "matching",
+      "prompt": "次の織り方の説明に合う組織名を、下記の選択肢から1つずつ選びなさい。",
+      "items": [
+        {
+          "id": "a",
+          "label": "たて糸とよこ糸を1本ずつ交互に交差させる最も基本的な組織"
+        },
+        {
+          "id": "b",
+          "label": "交差点を分散させ、糸を長く浮かせて光沢のある滑らかな表面を作る組織"
+        }
+      ],
+      "options": [
+        {
+          "id": "opt1",
+          "text": "平織"
+        },
+        {
+          "id": "opt2",
+          "text": "朱子織(繻子織)"
+        }
+      ],
+      "answer": {
+        "a": "opt1",
+        "b": "opt2"
+      },
+      "explanation": "平織は最も単純な組織、朱子織は光沢のある滑らかな織物になる組織。三原組織にはこの2つと綾織(斜文織)がある。",
+      "points": 2,
+      "review_needed": false
+    },
+    {
+      "id": "q12-sample1",
+      "theme_id": 12,
+      "type": "matching",
+      "prompt": "次の帯の説明に合う名称を、下記の選択肢から1つずつ選びなさい。",
+      "items": [
+        {
+          "id": "a",
+          "label": "帯全体に柄があり、最も格式が高いとされる帯"
+        },
+        {
+          "id": "b",
+          "label": "普段着から準礼装まで幅広く使われる、一重太鼓向けの帯"
+        }
+      ],
+      "options": [
+        {
+          "id": "opt1",
+          "text": "丸帯"
+        },
+        {
+          "id": "opt2",
+          "text": "名古屋帯"
+        }
+      ],
+      "answer": {
+        "a": "opt1",
+        "b": "opt2"
+      },
+      "explanation": "丸帯は最も格式が高い帯、名古屋帯は日常から準礼装まで使える実用的な帯。",
+      "points": 2,
+      "review_needed": false
+    },
+    {
+      "id": "q16-sample1",
+      "theme_id": 16,
+      "type": "single_choice",
+      "prompt": "美容師法における着付け業務の位置づけに関する記述のうち、適当なものを1つ選びなさい。",
+      "options": [
+        {
+          "id": "a",
+          "text": "業として行う着付けは、常に美容師の資格が必須である。"
+        },
+        {
+          "id": "b",
+          "text": "着付けそのものは美容師の業務独占の対象ではないが、着付けに伴い顔そりやメイクなど美容行為を行う場合は美容師資格が必要になる。"
+        },
+        {
+          "id": "c",
+          "text": "着付け技能士の資格があれば、美容行為も含めてすべて業として行える。"
+        }
+      ],
+      "correct_option_id": "b",
+      "explanation": "この問題は法律の条文解釈に関わるため、必ず美容師法の現行条文・関連通達をご自身で確認のうえ、正誤・解説を修正してください。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "q3-sample2",
+      "theme_id": 3,
+      "type": "matching",
+      "prompt": "次の説明に合う文様の分類を、下記の選択肢から1つずつ選びなさい。",
+      "items": [
+        {
+          "id": "a",
+          "label": "麻の葉や格子など、図形の組み合わせで構成される文様"
+        },
+        {
+          "id": "b",
+          "label": "縁起の良い意味を持ち、中国から伝わり日本独自の要素も加わった文様"
+        },
+        {
+          "id": "c",
+          "label": "平安時代から宮廷を中心に、公家の装束や調度品に用いられてきた文様"
+        }
+      ],
+      "options": [
+        {
+          "id": "opt1",
+          "text": "幾何学文様"
+        },
+        {
+          "id": "opt2",
+          "text": "吉祥文様"
+        },
+        {
+          "id": "opt3",
+          "text": "有職文様"
+        }
+      ],
+      "answer": {
+        "a": "opt1",
+        "b": "opt2",
+        "c": "opt3"
+      },
+      "explanation": "文様は大きく幾何学文様・吉祥文様・有職文様の3つに分類される。",
+      "points": 3,
+      "review_needed": false
+    },
+    {
+      "id": "q7-sample2",
+      "theme_id": 7,
+      "type": "matching",
+      "prompt": "次の織物の説明に合う名称を、下記の選択肢から1つずつ選びなさい。",
+      "items": [
+        {
+          "id": "a",
+          "label": "織り目が細かく滑らかで艶があり、礼服や羽織の裏地などに使われる平織の絹織物"
+        },
+        {
+          "id": "b",
+          "label": "たて糸を細く、よこ糸を太く織ることで、布面によこ畝が現れるのが特徴の織物"
+        },
+        {
+          "id": "c",
+          "label": "撚りの強い糸を使って織った後、精練することで独特のシボ(凹凸)を出す織物"
+        }
+      ],
+      "options": [
+        {
+          "id": "opt1",
+          "text": "羽二重"
+        },
+        {
+          "id": "opt2",
+          "text": "塩瀬"
+        },
+        {
+          "id": "opt3",
+          "text": "縮緬"
+        }
+      ],
+      "answer": {
+        "a": "opt1",
+        "b": "opt2",
+        "c": "opt3"
+      },
+      "explanation": "羽二重・塩瀬・縮緬はいずれも絹織物だが、織り方と用途が異なる。",
+      "points": 3,
+      "review_needed": true
+    },
+    {
+      "id": "q8-sample2",
+      "theme_id": 8,
+      "type": "matching",
+      "prompt": "次の染めの説明に合う名称を、下記の選択肢から1つずつ選びなさい。",
+      "items": [
+        {
+          "id": "a",
+          "label": "小ぶりな草花や鳥を写実的に描き、落ち着いた色合いを特徴とする友禅"
+        },
+        {
+          "id": "b",
+          "label": "写生画のような繊細で華麗な装飾画が特徴で、大柄・刺繍・金箔を用いた豪華な友禅"
+        },
+        {
+          "id": "c",
+          "label": "粋で洒落た感覚を持ち、寒色系の渋く落ち着いた色調を特徴とする友禅"
+        }
+      ],
+      "options": [
+        {
+          "id": "opt1",
+          "text": "加賀友禅"
+        },
+        {
+          "id": "opt2",
+          "text": "京友禅"
+        },
+        {
+          "id": "opt3",
+          "text": "江戸友禅"
+        }
+      ],
+      "answer": {
+        "a": "opt1",
+        "b": "opt2",
+        "c": "opt3"
+      },
+      "explanation": "友禅染には産地ごとに加賀友禅・京友禅・江戸友禅の3つの系統がある。",
+      "points": 3,
+      "review_needed": true
+    },
+    {
+      "id": "q11-sample2",
+      "theme_id": 11,
+      "type": "fill_blank",
+      "prompt_template": "紋には、白く染め抜いて表す（①）と、輪郭線のみで表す（②）がある。紋を刺繍で表したものは（③）と呼ばれる。また、女子紋服に用いる紋の直径は、約（④）が目安とされる。",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "日向紋(陽紋)"
+        },
+        {
+          "id": "opt2",
+          "text": "陰紋"
+        },
+        {
+          "id": "opt3",
+          "text": "縫紋"
+        },
+        {
+          "id": "opt4",
+          "text": "1.9cm"
+        }
+      ],
+      "answer": {
+        "①": "opt1",
+        "②": "opt2",
+        "③": "opt3",
+        "④": "opt4"
+      },
+      "explanation": "白く染め抜くのが日向紋(陽紋)、輪郭のみが陰紋、刺繍で表すのが縫紋。女子紋服の紋の直径は約1.9cmが目安とされる。",
+      "points": 8,
+      "review_needed": true
+    },
+    {
+      "id": "q13-sample2",
+      "theme_id": 13,
+      "type": "true_false",
+      "prompt": "振袖に合わせる草履は、佐賀錦やエナメル素材のものがふさわしい。",
+      "answer": true,
+      "explanation": "振袖のような華やかな装いには、佐賀錦やエナメルなど格のある素材の草履が合う。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "q13-sample3",
+      "theme_id": 13,
+      "type": "true_false",
+      "prompt": "礼装(袷)に使う半衿は、縮緬を用いるのが基本である。",
+      "answer": false,
+      "explanation": "礼装の半衿には、縮緬ではなく塩瀬を用いるのが基本とされる。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "q15-sample2",
+      "theme_id": 15,
+      "type": "multi_select",
+      "prompt": "着付けをする際の心得として、誤っているものを2つ選びなさい。",
+      "options": [
+        {
+          "id": "a",
+          "text": "着付けの際、時計やアクセサリーは特に外さなくてもよい。"
+        },
+        {
+          "id": "b",
+          "text": "着付けを始める前には丁寧に一礼をする。"
+        },
+        {
+          "id": "c",
+          "text": "着付けに使う紐類は、作業中は首や肩にかけておいてよい。"
+        },
+        {
+          "id": "d",
+          "text": "着付け中の衣裳は衣裳箱に入れて管理する。"
+        },
+        {
+          "id": "e",
+          "text": "クリップなど着付けに使う小物は、着物を傷めないよう着付け専用のものを使う。"
+        }
+      ],
+      "correct_option_ids": [
+        "a",
+        "c"
+      ],
+      "select_count": 2,
+      "explanation": "着付けの際は時計やアクセサリーを外し、紐類を首や肩にかけたまま作業しないのが正しい心得。",
+      "points": 4,
+      "review_needed": false
+    },
+    {
+      "id": "t1-b2-1",
+      "theme_id": 1,
+      "type": "matching",
+      "prompt": "次の時代と関係の深い染織技法・服飾を、下記の選択肢から1つずつ選びなさい。",
+      "items": [
+        {
+          "id": "a",
+          "label": "奈良時代"
+        },
+        {
+          "id": "b",
+          "label": "平安時代"
+        }
+      ],
+      "options": [
+        {
+          "id": "opt1",
+          "text": "唐の文化の影響を受けた服飾制度が整えられた"
+        },
+        {
+          "id": "opt2",
+          "text": "十二単など、国風文化による独自の装束が発展した"
+        }
+      ],
+      "answer": {
+        "a": "opt1",
+        "b": "opt2"
+      },
+      "explanation": "奈良時代は唐の制度の影響が強く、平安時代には国風化が進み十二単などが発展した。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "t1-b2-2",
+      "theme_id": 1,
+      "type": "matching",
+      "prompt": "次の時代と関係の深い服飾を、下記の選択肢から1つずつ選びなさい。",
+      "items": [
+        {
+          "id": "a",
+          "label": "鎌倉時代"
+        },
+        {
+          "id": "b",
+          "label": "江戸時代"
+        }
+      ],
+      "options": [
+        {
+          "id": "opt1",
+          "text": "実用性を重視した武家の服飾が発展した"
+        },
+        {
+          "id": "opt2",
+          "text": "友禅染など多彩な染色技法が確立し庶民にも広がった"
+        }
+      ],
+      "answer": {
+        "a": "opt1",
+        "b": "opt2"
+      },
+      "explanation": "鎌倉時代は武家中心の実用的な服飾、江戸時代は染織技術の発展と町人文化の広がりが特徴。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "t2-b2-1",
+      "theme_id": 2,
+      "type": "matching",
+      "prompt": "次の着物の部位の説明に合う名称を、下記の選択肢から1つずつ選びなさい。",
+      "items": [
+        {
+          "id": "a",
+          "label": "袖付けから袖下までの、袖の下側にある袋状の部分"
+        },
+        {
+          "id": "b",
+          "label": "着物の裾から袖付けあたりまでの、身頃の縦の長さ"
+        }
+      ],
+      "options": [
+        {
+          "id": "opt1",
+          "text": "人形(にんぎょう)"
+        },
+        {
+          "id": "opt2",
+          "text": "身丈"
+        }
+      ],
+      "answer": {
+        "a": "opt1",
+        "b": "opt2"
+      },
+      "explanation": "人形は振袖などの袖下部分の名称、身丈は着物の縦方向の基本寸法。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "t2-b2-2",
+      "theme_id": 2,
+      "type": "matching",
+      "prompt": "次の着物の部位の説明に合う名称を、下記の選択肢から1つずつ選びなさい。",
+      "items": [
+        {
+          "id": "a",
+          "label": "衿の、肩から衿先までの部分"
+        },
+        {
+          "id": "b",
+          "label": "袖の、袖口に近い斜めになった先端部分"
+        }
+      ],
+      "options": [
+        {
+          "id": "opt1",
+          "text": "衿下"
+        },
+        {
+          "id": "opt2",
+          "text": "袂先"
+        }
+      ],
+      "answer": {
+        "a": "opt1",
+        "b": "opt2"
+      },
+      "explanation": "衿下は衿の縦方向の部分、袂先は袖のたもと部分の先端を指す。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "t3-b2-1",
+      "theme_id": 3,
+      "type": "matching",
+      "prompt": "次の文様の具体例を、分類に合わせて1つずつ選びなさい。",
+      "items": [
+        {
+          "id": "a",
+          "label": "格子"
+        },
+        {
+          "id": "b",
+          "label": "立涌"
+        },
+        {
+          "id": "c",
+          "label": "慰斗"
+        }
+      ],
+      "options": [
+        {
+          "id": "opt1",
+          "text": "幾何学文様"
+        },
+        {
+          "id": "opt2",
+          "text": "有職文様"
+        },
+        {
+          "id": "opt3",
+          "text": "吉祥文様"
+        }
+      ],
+      "answer": {
+        "a": "opt1",
+        "b": "opt2",
+        "c": "opt3"
+      },
+      "explanation": "格子は幾何学文様、立涌は平安時代からの有職文様、慰斗は縁起の良い吉祥文様の一例。",
+      "points": 3,
+      "review_needed": false
+    },
+    {
+      "id": "t3-b2-2",
+      "theme_id": 3,
+      "type": "matching",
+      "prompt": "次の文様の具体例を、分類に合わせて1つずつ選びなさい。",
+      "items": [
+        {
+          "id": "a",
+          "label": "麻の葉"
+        },
+        {
+          "id": "b",
+          "label": "亀甲"
+        },
+        {
+          "id": "c",
+          "label": "瑞雲"
+        }
+      ],
+      "options": [
+        {
+          "id": "opt1",
+          "text": "幾何学文様"
+        },
+        {
+          "id": "opt2",
+          "text": "有職文様"
+        },
+        {
+          "id": "opt3",
+          "text": "吉祥文様"
+        }
+      ],
+      "answer": {
+        "a": "opt1",
+        "b": "opt2",
+        "c": "opt3"
+      },
+      "explanation": "麻の葉は幾何学文様、亀甲は有職文様、瑞雲は縁起の良い吉祥文様の一例。",
+      "points": 3,
+      "review_needed": false
+    },
+    {
+      "id": "t4-b2-1",
+      "theme_id": 4,
+      "type": "fill_blank",
+      "prompt_template": "男物の着物の脇には（①）が開いておらず、女物には（①）が開いている。また女物の袖には（②）と呼ばれる袋状の部分があるが、男物にはない。",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "身八つ口"
+        },
+        {
+          "id": "opt2",
+          "text": "人形(にんぎょう)"
+        }
+      ],
+      "answer": {
+        "①": "opt1",
+        "②": "opt2"
+      },
+      "explanation": "身八つ口は女物特有の脇の開き、人形は女物の袖にある袋状の部分。",
+      "points": 4,
+      "review_needed": true
+    },
+    {
+      "id": "t4-b2-2",
+      "theme_id": 4,
+      "type": "fill_blank",
+      "prompt_template": "男物の衿は背中心から衿先まで同じ幅の（①）に仕立てるが、女物は幅が変化する（②）に仕立てることが多い。",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "棒衿"
+        },
+        {
+          "id": "opt2",
+          "text": "広衿"
+        }
+      ],
+      "answer": {
+        "①": "opt1",
+        "②": "opt2"
+      },
+      "explanation": "男物は棒衿、女物は広衿(バチ衿の場合もある)で仕立てるのが一般的。",
+      "points": 4,
+      "review_needed": true
+    },
+    {
+      "id": "t6-b2-1",
+      "theme_id": 6,
+      "type": "matching",
+      "prompt": "次の組織の特徴を、名称に合わせて1つずつ選びなさい。",
+      "items": [
+        {
+          "id": "a",
+          "label": "綾織(斜文織)"
+        },
+        {
+          "id": "b",
+          "label": "平織"
+        }
+      ],
+      "options": [
+        {
+          "id": "opt1",
+          "text": "たて糸とよこ糸を3本以上使い、組織点が斜めの線を作る"
+        },
+        {
+          "id": "opt2",
+          "text": "たて糸とよこ糸を1本ずつ交互に交差させる、最も古い組織"
+        }
+      ],
+      "answer": {
+        "a": "opt1",
+        "b": "opt2"
+      },
+      "explanation": "綾織は組織点が斜めに連なる織り方、平織は最も基本的で丈夫な織り方。",
+      "points": 2,
+      "review_needed": false
+    },
+    {
+      "id": "t6-b2-2",
+      "theme_id": 6,
+      "type": "true_false",
+      "prompt": "朱子織(繻子織)は、三原組織の中で最も織物の表面がざらつき、光沢が出にくい組織である。",
+      "answer": false,
+      "explanation": "朱子織は組織点を分散させ糸を長く浮かせるため、三原組織の中で最も滑らかで光沢が出やすい組織である。",
+      "points": 2,
+      "review_needed": false
+    },
+    {
+      "id": "t7-b2-1",
+      "theme_id": 7,
+      "type": "true_false",
+      "prompt": "塩瀬は、礼装用の半衿の生地として使われることが多い。",
+      "answer": true,
+      "explanation": "塩瀬は厚みと張りがあり、礼装用の半衿によく使われる。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "t7-b2-2",
+      "theme_id": 7,
+      "type": "true_false",
+      "prompt": "羽二重は、着物の裏地よりも表地として使われることが圧倒的に多い。",
+      "answer": false,
+      "explanation": "羽二重は滑らかで光沢があり、礼装の羽織裏など裏地として使われることが多い織物。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "t8-b2-1",
+      "theme_id": 8,
+      "type": "true_false",
+      "prompt": "加賀友禅は、金箔や刺繍を多用した豪華な装飾が最大の特徴である。",
+      "answer": false,
+      "explanation": "金箔や刺繍を多用した豪華な装飾が特徴なのは京友禅であり、加賀友禅は写実的で落ち着いた色調が特徴。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "t8-b2-2",
+      "theme_id": 8,
+      "type": "true_false",
+      "prompt": "江戸友禅は、寒色系の渋く落ち着いた色調を特徴とする染物である。",
+      "answer": true,
+      "explanation": "江戸友禅は粋で洒落た感覚を持ち、寒色系の落ち着いた色調が特徴とされる。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "t9-b2-1",
+      "theme_id": 9,
+      "type": "true_false",
+      "prompt": "単の着物は、6月と9月に着用するのが一般的である。",
+      "answer": true,
+      "explanation": "単は袷と薄物の中間の時季、6月と9月に着用するのが一般的とされる。",
+      "points": 2,
+      "review_needed": false
+    },
+    {
+      "id": "t9-b2-2",
+      "theme_id": 9,
+      "type": "true_false",
+      "prompt": "絽や紗などの薄物は、6月から着用してよいとされる。",
+      "answer": false,
+      "explanation": "薄物は盛夏の7月・8月が着用時季であり、6月から着用するのは時季として早すぎるとされる。",
+      "points": 2,
+      "review_needed": false
+    },
+    {
+      "id": "t10-b2-1",
+      "theme_id": 10,
+      "type": "multi_select",
+      "prompt": "着物の格に関する記述について、誤っているものを2つ選びなさい。",
+      "options": [
+        {
+          "id": "a",
+          "text": "訪問着は、絵羽模様が入っていれば紋がなくても準礼装として着用できる。"
+        },
+        {
+          "id": "b",
+          "text": "付下げは、訪問着よりも格が高いとされる。"
+        },
+        {
+          "id": "c",
+          "text": "色無地は、紋の数によって格が変わる。"
+        },
+        {
+          "id": "d",
+          "text": "小紋は、どのような柄でも礼装として着用できる。"
+        }
+      ],
+      "correct_option_ids": [
+        "b",
+        "d"
+      ],
+      "select_count": 2,
+      "explanation": "付下げは訪問着より格がやや下とされ、小紋は柄によって礼装にはならない場合が多い。",
+      "points": 4,
+      "review_needed": true
+    },
+    {
+      "id": "t11-b2-1",
+      "theme_id": 11,
+      "type": "fill_blank",
+      "prompt_template": "紋の数が最も多い一つ紋・三つ紋・五つ紋のうち、最も格が高いのは（①）で、略礼装として使われることが多いのは（②）である。",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "五つ紋"
+        },
+        {
+          "id": "opt2",
+          "text": "一つ紋"
+        }
+      ],
+      "answer": {
+        "①": "opt1",
+        "②": "opt2"
+      },
+      "explanation": "紋の数が多いほど格式が高くなり、五つ紋が最も格が高く、一つ紋は略礼装に使われる。",
+      "points": 4,
+      "review_needed": true
+    },
+    {
+      "id": "t12-b2-1",
+      "theme_id": 12,
+      "type": "true_false",
+      "prompt": "角帯は、女性用の礼装帯として最も格式が高いとされる。",
+      "answer": false,
+      "explanation": "角帯は男性用の帯であり、女性用の礼装帯ではない。",
+      "points": 2,
+      "review_needed": false
+    },
+    {
+      "id": "t12-b2-2",
+      "theme_id": 12,
+      "type": "matching",
+      "prompt": "次の帯の説明に合う名称を、下記の選択肢から1つずつ選びなさい。",
+      "items": [
+        {
+          "id": "a",
+          "label": "太鼓になる部分は表地をそのまま返し、胴に巻く部分は半幅に仕立てた帯"
+        },
+        {
+          "id": "b",
+          "label": "男性用の帯の総称"
+        }
+      ],
+      "options": [
+        {
+          "id": "opt1",
+          "text": "腹合わせ帯(昼夜帯)"
+        },
+        {
+          "id": "opt2",
+          "text": "角帯"
+        }
+      ],
+      "answer": {
+        "a": "opt1",
+        "b": "opt2"
+      },
+      "explanation": "太鼓部分と胴部分で仕立てを変えた帯を腹合わせ帯といい、角帯は男性用の帯を指す。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "t13-b2-1",
+      "theme_id": 13,
+      "type": "true_false",
+      "prompt": "喪服に合わせる帯揚げ・帯締めは、白系統のものがふさわしい。",
+      "answer": false,
+      "explanation": "喪服には白ではなく、黒系統の帯揚げ・帯締めを合わせるのが基本とされる。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "t13-b2-2",
+      "theme_id": 13,
+      "type": "true_false",
+      "prompt": "黒留袖に合わせる帯締めは、白の丸ぐけや白・金銀の組紐がふさわしいとされる。",
+      "answer": true,
+      "explanation": "黒留袖のような第一礼装には、白や金銀系統の格の高い帯締めを合わせる。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "t14-b2-1",
+      "theme_id": 14,
+      "type": "single_choice",
+      "prompt": "次の着物と小物の組み合わせのうち、適当なものを1つ選びなさい。",
+      "options": [
+        {
+          "id": "a",
+          "text": "喪服 ― 白の布製の草履"
+        },
+        {
+          "id": "b",
+          "text": "喪服 ― 黒の布製の草履"
+        },
+        {
+          "id": "c",
+          "text": "訪問着 ― コルクの草履"
+        },
+        {
+          "id": "d",
+          "text": "浴衣 ― 白木の下駄"
+        }
+      ],
+      "correct_option_id": "b",
+      "explanation": "喪服には黒の布製の草履を合わせるのが基本。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "t15-b2-1",
+      "theme_id": 15,
+      "type": "multi_select",
+      "prompt": "着付けの心得・作法として、正しいものを2つ選びなさい。",
+      "options": [
+        {
+          "id": "a",
+          "text": "着付けを始める前に、お客様への挨拶と道具の確認を行う。"
+        },
+        {
+          "id": "b",
+          "text": "衣裳や小物は、床に直接広げて作業してよい。"
+        },
+        {
+          "id": "c",
+          "text": "使用した紐や小物は、着付け終了後すぐに片付ける。"
+        },
+        {
+          "id": "d",
+          "text": "着付け中に気になった着崩れは、終わってから一度にまとめて直す。"
+        }
+      ],
+      "correct_option_ids": [
+        "a",
+        "c"
+      ],
+      "select_count": 2,
+      "explanation": "事前準備・挨拶の徹底と、使用後の速やかな片付けが基本的な心得とされる。衣裳を床に直接広げることや、着崩れを放置することは避けるべきとされる。",
+      "points": 4,
+      "review_needed": true
+    },
+    {
+      "id": "t16-b2-1",
+      "theme_id": 16,
+      "type": "single_choice",
+      "prompt": "美容師法に関する記述のうち、誤っているものを1つ選びなさい。",
+      "options": [
+        {
+          "id": "a",
+          "text": "美容師免許を取得すれば、全国どの都道府県でも美容を業として行うことができる。"
+        },
+        {
+          "id": "b",
+          "text": "パーマネントウェーブや結髪の方法により容姿を美しくすることは、美容師でなければ業として行えない。"
+        },
+        {
+          "id": "c",
+          "text": "美容師免許は、都道府県ごとに別々に取得する必要がある。"
+        }
+      ],
+      "correct_option_id": "c",
+      "explanation": "この問題は法律の条文解釈に関わるため、必ず現行の美容師法をご自身で確認のうえ、正誤・解説を修正してください。",
+      "points": 2,
+      "review_needed": true
+    },
+    {
+      "id": "t5-honnedatami",
+      "theme_id": 5,
+      "type": "ordering",
+      "prompt": "長着のたたみ方(本だたみ・訪問着や付下げなど)について、正しい順序になるように並べなさい。",
+      "items": [
+        {
+          "id": "a",
+          "text": "衿を左側にして着物を広げる",
+          "image": "hondatami_step1.png"
+        },
+        {
+          "id": "b",
+          "text": "おくみ線を合わせて衿・前身頃を折る",
+          "image": "hondatami_step2.png"
+        },
+        {
+          "id": "c",
+          "text": "脇線を合わせて身頃を重ねる",
+          "image": "hondatami_step3.png"
+        },
+        {
+          "id": "d",
+          "text": "袖を身頃に沿わせて折る",
+          "image": "hondatami_step4.png"
+        },
+        {
+          "id": "e",
+          "text": "裾から二つ折りにして完成",
+          "image": "hondatami_step5.png"
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ],
+      "explanation": "衿を左にして広げ、おくみ線→脇線の順に身頃を整え、袖を沿わせてから裾を二つ折りにするのが本だたみの基本手順。",
+      "points": 10,
+      "review_needed": false
+    },
+    {
+      "id": "t5-yagudatami",
+      "theme_id": 5,
+      "type": "ordering",
+      "prompt": "長着のたたみ方(夜具だたみ・留袖や本振袖など)について、正しい順序になるように並べなさい。",
+      "items": [
+        {
+          "id": "a",
+          "text": "左右の袖を身頃の中央に向けてたたむ",
+          "image": "yagudatami_step1.png"
+        },
+        {
+          "id": "b",
+          "text": "左右の身頃を中央に向けてたたみ、形を整える",
+          "image": "yagudatami_step2.png"
+        },
+        {
+          "id": "c",
+          "text": "着物の丈の方向に二つ折りにする",
+          "image": "yagudatami_step3.png"
+        },
+        {
+          "id": "d",
+          "text": "もう一度二つ折りにし、全体をコンパクトにまとめる",
+          "image": "yagudatami_step4.png"
+        },
+        {
+          "id": "e",
+          "text": "衿や裾、袖を整え、シワがないようきれいに仕上げる",
+          "image": "yagudatami_step5.png"
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ],
+      "explanation": "夜具だたみは、まず袖・身頃を中央にたたんでから丈方向に折りたたみ、最後に全体を整えるのが特徴。",
+      "points": 10,
+      "review_needed": false
+    },
+    {
+      "id": "t5-nagajuban",
+      "theme_id": 5,
+      "type": "ordering",
+      "prompt": "長襦袢のたたみ方について、正しい順序になるように並べなさい。",
+      "items": [
+        {
+          "id": "a",
+          "text": "衿を左側にして広げる",
+          "image": "nagajuban_step1.png"
+        },
+        {
+          "id": "b",
+          "text": "衿を整えて身頃を重ねる",
+          "image": "nagajuban_step2.png"
+        },
+        {
+          "id": "c",
+          "text": "脇線を合わせて折る",
+          "image": "nagajuban_step3.png"
+        },
+        {
+          "id": "d",
+          "text": "身丈に合わせて二つ折りにする",
+          "image": "nagajuban_step4.png"
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "explanation": "長着の本だたみと似た流れだが、まず衿を整えるところから始まり、4ステップで完結するのが長襦袢の特徴。",
+      "points": 8,
+      "review_needed": false
+    },
+    {
+      "id": "t5-haori",
+      "theme_id": 5,
+      "type": "ordering",
+      "prompt": "羽織のたたみ方について、正しい順序になるように並べなさい。",
+      "items": [
+        {
+          "id": "a",
+          "text": "羽織を裏返して広げる",
+          "image": "haori_step1.png"
+        },
+        {
+          "id": "b",
+          "text": "衿を整える",
+          "image": "haori_step2.png"
+        },
+        {
+          "id": "c",
+          "text": "両脇を内側に折り、身頃を重ねる",
+          "image": "haori_step3.png"
+        },
+        {
+          "id": "d",
+          "text": "袖を後ろ側に折り返す",
+          "image": "haori_step4.png"
+        },
+        {
+          "id": "e",
+          "text": "身丈に合わせて二つ折りにする",
+          "image": "haori_step5.png"
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ],
+      "explanation": "羽織は裏返して広げるところから始まり、袖を後ろ側に折り返す点が長着・長襦袢と異なる。",
+      "points": 10,
+      "review_needed": false
+    }
+  ]
+}

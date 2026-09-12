@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1級着付け技能士 筆記試験対策クイズ（プロトタイプ）</title>
+<style>
+  :root {
+    --bg: #f5f5f4;
+    --surface: #ffffff;
+    --border: #e3e1dd;
+    --text: #23201d;
+    --text-secondary: #6f6b66;
+    --accent: #8a5a3f;
+    --accent-hover: #6f4630;
+    --accent-soft: #f2e7de;
+    --success: #1f9d55;
+    --success-bg: #eaf7ef;
+    --danger: #d1453d;
+    --danger-bg: #fdecec;
+    --warning-border: #e6c458;
+    --warning-bg: #fff6dc;
+    --warning-text: #7a5b00;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --shadow-sm: 0 1px 2px rgba(30,25,20,0.05), 0 1px 3px rgba(30,25,20,0.06);
+    --shadow-md: 0 4px 10px rgba(30,25,20,0.07), 0 2px 4px rgba(30,25,20,0.05);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 28px 20px;
+  }
+  #app {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 20px;
+  }
+  #meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    margin-bottom: 10px;
+    min-height: 20px;
+  }
+  .meta-progress {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+  #score:not(:empty) {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent-hover);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 24px;
+  }
+  .card h2, .card h3, .card h4 {
+    margin: 0 0 12px;
+    color: var(--text);
+    font-weight: 700;
+  }
+  .card h2 { font-size: 18px; }
+  .card h3 { font-size: 18px; }
+  .card h4 { font-size: 14px; margin-top: 22px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .03em; }
+  .card > p { margin: 0 0 8px; line-height: 1.7; color: var(--text-secondary); }
+  .theme-tag {
+    display: inline-block;
+    background: var(--bg);
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 11px;
+    border-radius: 999px;
+    margin: 0 6px 12px 0;
+  }
+  .review-tag {
+    display: inline-block;
+    background: var(--warning-bg);
+    color: var(--warning-text);
+    border: 1px solid var(--warning-border);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 11px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .prompt {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .blank {
+    display: inline-block;
+    min-width: 90px;
+    max-width: 100%;
+    border-bottom: 2px solid var(--accent);
+    text-align: center;
+    font-weight: 700;
+    color: var(--accent-hover);
+    overflow-wrap: break-word;
+  }
+  select {
+    font-size: 16px;
+    padding: 10px 12px;
+    min-height: 44px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--text);
+    transition: border-color .15s ease;
+  }
+  select:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+  .option-row, .item-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .item-row:last-of-type { border-bottom: none; }
+  .item-row > div:first-child {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .item-row select {
+    flex: 1 1 160px;
+    min-width: 0;
+  }
+  .theme-row { margin-bottom: 8px; }
+  .theme-row label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 11px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .theme-row label:hover { border-color: var(--accent); }
+  .theme-row label:has(input:checked) {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .theme-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+  }
+  .choice-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 13px 14px;
+    margin: 8px 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 16px;
+    font-family: inherit;
+    line-height: 1.5;
+    min-height: 44px;
+    overflow-wrap: break-word;
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .choice-btn:hover:not(:disabled) { border-color: var(--accent); }
+  .choice-btn.selected {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    font-weight: 600;
+  }
+  .choice-btn:disabled { cursor: default; }
+  .choice-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .choice-btn.correct { border-color: var(--success); background: var(--success-bg); font-weight: 600; }
+  .choice-btn.wrong { border-color: var(--danger); background: var(--danger-bg); }
+  .order-list { list-style: none; padding: 0; margin: 0 0 12px; }
+  .order-list li {
+    padding: 12px 14px;
+    margin: 8px 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .order-item-main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+  }
+  .order-item-icon {
+    flex-shrink: 0;
+    width: 116px;
+    height: 88px;
+    display: block;
+  }
+  img.order-item-icon {
+    object-fit: contain;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 4px;
+  }
+  .order-item-text-reveal {
+    flex-basis: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    min-width: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    margin-top: 2px;
+  }
+  @media (max-width: 480px) {
+    .order-item-icon { width: 96px; height: 73px; }
+  }
+  .order-list button {
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .order-list button:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+  .order-list button:disabled { opacity: .35; cursor: default; }
+  .tf-buttons { display: flex; gap: 12px; }
+  .tf-buttons button {
+    flex: 1;
+    padding: 14px;
+    min-height: 48px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .tf-buttons button:hover:not(:disabled) { border-color: var(--accent); }
+  .tf-buttons button.selected { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-hover); }
+  .tf-buttons button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  #controls {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  button.main {
+    flex: 1 1 auto;
+    padding: 13px 18px;
+    min-height: 48px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    background: var(--accent);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease, transform .05s ease;
+  }
+  button.main:hover:not(:disabled) { background: var(--accent-hover); border-color: var(--accent-hover); }
+  button.main:active:not(:disabled) { transform: translateY(1px); }
+  button.main:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: 2px; }
+  button.main:disabled { background: #cfccc7; border-color: #cfccc7; color: #fff; cursor: default; box-shadow: none; }
+  button.main.secondary {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--border);
+  }
+  button.main.secondary:hover:not(:disabled) { background: var(--bg); border-color: var(--border); }
+  button.main.review {
+    background: var(--surface);
+    color: var(--accent-hover);
+    border-color: var(--accent);
+  }
+  button.main.review:hover:not(:disabled) { background: var(--accent-soft); }
+  a.back-link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  a.back-link:hover { text-decoration: underline; }
+  #theme-list { margin: 4px 0 18px; }
+  .wrong-list {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .wrong-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .wrong-item-theme {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-hover);
+  }
+  .wrong-item-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .result-summary {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    margin-bottom: 4px;
+  }
+  .result-score-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .result-score-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-left: 6px;
+  }
+  .result-percent {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent-hover);
+  }
+  .result-allcorrect {
+    margin-top: 16px;
+    padding: 12px 14px;
+    background: var(--success-bg);
+    border: 1px solid var(--success);
+    border-radius: var(--radius-sm);
+    color: #146b39;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .history-box {
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 18px;
+  }
+  #result {
+    margin-top: 16px;
+    padding: 16px 18px;
+    border-radius: var(--radius-sm);
+    display: none;
+  }
+  #result.ok { background: var(--success-bg); border: 1px solid var(--success); border-left-width: 4px; }
+  #result.ng { background: var(--danger-bg); border: 1px solid var(--danger); border-left-width: 4px; }
+  #result h3 { margin: 0 0 8px; font-size: 15px; color: var(--text); }
+  #result p { margin: 0; font-size: 14px; line-height: 1.65; color: var(--text); }
+
+  @media (max-width: 480px) {
+    body { padding: 16px 12px; }
+    .card { padding: 16px; }
+    .item-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .item-row select {
+      flex: 0 1 auto;
+      width: 100%;
+    }
+    #controls button.main {
+      flex: 1 1 100%;
+    }
+    .result-summary { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <h1>1級着付け技能士 筆記試験対策クイズ（プロトタイプ）</h1>
+  <div id="meta"></div>
+  <div id="score"></div>
+  <div class="card" id="quiz-card"></div>
+  <div id="result"></div>
+  <div id="controls"></div>
+</div>
+
+<script>
+let data = null;
+let questions = [];
+let current = 0;
+let score = { correct: 0, total: 0 };
+let answered = false;
+let sessionWrong = [];
+let selectedThemeIds = null;
+
+// per-question working state
+let state = {};
+
+const HISTORY_KEY = 'kitsukeQuizHistory';
+
+function loadHistory() {
+  try {
+    return JSON.parse(localStorage.getItem(HISTORY_KEY)) || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveHistory(history) {
+  try {
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  } catch (e) {
+    // localStorageが使えない環境では記録をあきらめる
+  }
+}
+
+function recordHistory(questionId, correct, themeId) {
+  const history = loadHistory();
+  history[questionId] = { correct, theme_id: themeId, timestamp: Date.now() };
+  saveHistory(history);
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+async function init() {
+  const res = await fetch('questions_all16_draft.json');
+  data = await res.json();
+  showStartScreen();
+}
+
+function themeName(themeId) {
+  const t = data.themes.find(t => t.id === themeId);
+  return t ? t.name : `テーマ${themeId}`;
+}
+
+function questionText(q) {
+  return q.prompt || q.prompt_template || '';
+}
+
+// ---------- Start screen (theme filter) ----------
+
+function showStartScreen() {
+  document.getElementById('meta').textContent = '';
+  document.getElementById('score').textContent = '';
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('result').innerHTML = '';
+
+  const themeCounts = data.themes
+    .map(t => ({ ...t, count: data.questions.filter(q => q.theme_id === t.id).length }))
+    .filter(t => t.count > 0);
+
+  if (!selectedThemeIds) {
+    selectedThemeIds = new Set(themeCounts.map(t => t.id));
+  }
+
+  const history = loadHistory();
+  const wrongIds = Object.keys(history).filter(id => history[id].correct === false);
+
+  const card = document.getElementById('quiz-card');
+  card.innerHTML = `
+    <h2>出題するテーマを選んでください</h2>
+    ${wrongIds.length > 0
+      ? `<div class="history-box">前回までに間違えた問題が ${wrongIds.length} 問あります。</div>`
+      : ''}
+    <div class="theme-row"><label><input type="checkbox" id="theme-all"> すべてのテーマ</label></div>
+    <div id="theme-list"></div>
+  `;
+
+  const list = document.getElementById('theme-list');
+  themeCounts.forEach(t => {
+    const row = document.createElement('div');
+    row.className = 'theme-row';
+    row.innerHTML = `<label><input type="checkbox" class="theme-cb" data-theme-id="${t.id}" ${selectedThemeIds.has(t.id) ? 'checked' : ''}> ${escapeHtml(t.name)}（${t.count}問）</label>`;
+    list.appendChild(row);
+  });
+
+  const allCb = document.getElementById('theme-all');
+  function syncAllCheckbox() {
+    allCb.checked = selectedThemeIds.size === themeCounts.length;
+  }
+  syncAllCheckbox();
+
+  allCb.onchange = () => {
+    selectedThemeIds = allCb.checked ? new Set(themeCounts.map(t => t.id)) : new Set();
+    document.querySelectorAll('.theme-cb').forEach(cb => {
+      cb.checked = selectedThemeIds.has(Number(cb.dataset.themeId));
+    });
+  };
+
+  document.querySelectorAll('.theme-cb').forEach(cb => {
+    cb.onchange = () => {
+      const id = Number(cb.dataset.themeId);
+      if (cb.checked) selectedThemeIds.add(id);
+      else selectedThemeIds.delete(id);
+      syncAllCheckbox();
+    };
+  });
+
+  let controlsHtml = `<button class="main" id="start-btn">学科問題に挑戦する</button>`;
+  if (wrongIds.length > 0) {
+    controlsHtml += `<button class="main review" id="review-wrong-btn">前回間違えた問題を復習する（${wrongIds.length}問）</button>`;
+  }
+  document.getElementById('controls').innerHTML = controlsHtml;
+
+  document.getElementById('start-btn').onclick = () => {
+    const filtered = data.questions.filter(q => selectedThemeIds.has(q.theme_id));
+    if (filtered.length === 0) {
+      alert('テーマを1つ以上選んでください。');
+      return;
+    }
+    startQuiz(filtered);
+  };
+
+  if (wrongIds.length > 0) {
+    document.getElementById('review-wrong-btn').onclick = () => {
+      const reviewQuestions = data.questions.filter(q => wrongIds.includes(q.id));
+      if (reviewQuestions.length === 0) {
+        alert('復習できる問題が見つかりませんでした。');
+        return;
+      }
+      startQuiz(reviewQuestions);
+    };
+  }
+}
+
+function startQuiz(list) {
+  questions = list;
+  current = 0;
+  score = { correct: 0, total: 0 };
+  sessionWrong = [];
+  showQuestion();
+}
+
+function showQuestion() {
+  answered = false;
+  state = {};
+  const q = questions[current];
+  document.getElementById('meta').innerHTML =
+    `<span class="meta-progress">第 ${current + 1} / ${questions.length} 問</span>` +
+    `<a href="#" id="back-to-start-link" class="back-link">← テーマ選択に戻る</a>`;
+  document.getElementById('back-to-start-link').onclick = (e) => {
+    e.preventDefault();
+    showStartScreen();
+  };
+  document.getElementById('score').textContent =
+    score.total > 0 ? `現在のスコア: ${score.correct} / ${score.total} 問正解` : '';
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('result').className = '';
+  document.getElementById('result').innerHTML = '';
+
+  const card = document.getElementById('quiz-card');
+  card.innerHTML = `<span class="theme-tag">${themeName(q.theme_id)} / ${typeLabel(q.type)}</span>` +
+    (q.review_needed ? `<span class="review-tag">⚠ 要確認（未レビュー）</span>` : '');
+
+  const renderers = {
+    matching: renderMatching,
+    fill_blank: renderFillBlank,
+    ordering: renderOrdering,
+    true_false: renderTrueFalse,
+    multi_select: renderMultiSelect,
+    single_choice: renderSingleChoice,
+  };
+  renderers[q.type](q, card);
+
+  document.getElementById('controls').innerHTML =
+    `<button class="main" id="submit-btn">回答する</button>`;
+  document.getElementById('submit-btn').onclick = () => submitAnswer(q);
+}
+
+function typeLabel(type) {
+  return {
+    matching: '組み合わせ',
+    fill_blank: '穴埋め',
+    ordering: '並べ替え',
+    true_false: '〇×',
+    multi_select: '複数選択',
+    single_choice: '単一選択',
+  }[type] || type;
+}
+
+// ---------- Renderers ----------
+
+function renderMatching(q, card) {
+  const promptEl = document.createElement('div');
+  promptEl.className = 'prompt';
+  promptEl.textContent = q.prompt;
+  card.appendChild(promptEl);
+
+  state.matching = {};
+  q.items.forEach(item => {
+    const row = document.createElement('div');
+    row.className = 'item-row';
+    const label = document.createElement('div');
+    label.style.minWidth = '140px';
+    label.textContent = item.label;
+    const select = document.createElement('select');
+    select.innerHTML = '<option value="">選択してください</option>' +
+      q.options.map(o => `<option value="${o.id}">${o.text}</option>`).join('');
+    select.onchange = () => { state.matching[item.id] = select.value; };
+    select.dataset.itemId = item.id;
+    row.appendChild(label);
+    row.appendChild(select);
+    card.appendChild(row);
+  });
+}
+
+function renderFillBlank(q, card) {
+  state.fillBlank = {};
+  const blankIds = Object.keys(q.answer);
+  let html = q.prompt_template;
+  blankIds.forEach(bid => {
+    html = html.replace(`（${bid}）`, `<span class="blank" id="blank-${bid}">（${bid}）</span>`);
+  });
+  const promptEl = document.createElement('div');
+  promptEl.className = 'prompt';
+  promptEl.innerHTML = html;
+  card.appendChild(promptEl);
+
+  blankIds.forEach(bid => {
+    const row = document.createElement('div');
+    row.className = 'item-row';
+    const label = document.createElement('div');
+    label.style.minWidth = '30px';
+    label.textContent = bid;
+    const select = document.createElement('select');
+    select.innerHTML = '<option value="">選択してください</option>' +
+      q.options.map(o => `<option value="${o.id}">${o.text}</option>`).join('');
+    select.onchange = () => {
+      state.fillBlank[bid] = select.value;
+      const opt = q.options.find(o => o.id === select.value);
+      document.getElementById(`blank-${bid}`).textContent = opt ? opt.text : `（${bid}）`;
+    };
+    row.appendChild(label);
+    row.appendChild(select);
+    card.appendChild(row);
+  });
+}
+
+// ---- ordering diagrams: a simple kimono flat-lay silhouette that gets
+// progressively folded (narrower body, tucked sleeves, folded collar,
+// shorter height) as steps go by. Based purely on each item's position in
+// q.items as authored, and on keywords in that item's own text - never on
+// q.answer - so the diagrams never leak the correct order from the data,
+// they just happen to read in increasing "folded-ness" when items[] is
+// already authored in the intended step order.
+function analyzeFoldStep(text) {
+  const foldVerb = /(折|畳|たた|沿|重ね|合わせ|整)/;
+  return {
+    collar: /衿/.test(text) && foldVerb.test(text),
+    body: /(身頃|脇線|脇)/.test(text) && foldVerb.test(text),
+    sleeve: /袖/.test(text) && foldVerb.test(text),
+    half: (text.match(/二つ折り/g) || []).length,
+  };
+}
+
+function buildFoldStates(items) {
+  let collarCount = 0, bodyCount = 0, sleeveCount = 0, halfCount = 0;
+  return items.map(item => {
+    const f = analyzeFoldStep(item.text);
+    if (f.collar) collarCount++;
+    if (f.body) bodyCount++;
+    if (f.sleeve) sleeveCount++;
+    halfCount += f.half;
+    return {
+      id: item.id,
+      collarFolded: collarCount > 0,
+      bodyScale: Math.max(1 - bodyCount * 0.16, 0.42),
+      sleeveScale: sleeveCount > 0 ? 0 : 1,
+      heightScale: Math.max(Math.pow(0.62, halfCount), 0.3),
+    };
+  });
+}
+
+function kimonoDiagramSVG(foldState, badgeNumber) {
+  const W = 100, H = 76;
+  const centerX = W / 2;
+  const top = 12;
+  const bodyHalfW = 17 * foldState.bodyScale;
+  const bodyH = 52 * foldState.heightScale;
+  const bodyLeft = centerX - bodyHalfW;
+  const bodyRight = centerX + bodyHalfW;
+  const bodyBottom = top + bodyH;
+
+  let parts = '';
+
+  if (foldState.sleeveScale > 0) {
+    const sleeveW = 15;
+    const sleeveTop = top + 5;
+    const sleeveH = Math.max(Math.min(20, bodyH - 10), 0);
+    if (sleeveH > 4) {
+      parts += `<rect x="${(bodyLeft - sleeveW).toFixed(1)}" y="${sleeveTop}" width="${sleeveW}" height="${sleeveH.toFixed(1)}" rx="2" fill="var(--surface)" stroke="var(--border)" stroke-width="1.3" />`;
+      parts += `<rect x="${bodyRight.toFixed(1)}" y="${sleeveTop}" width="${sleeveW}" height="${sleeveH.toFixed(1)}" rx="2" fill="var(--surface)" stroke="var(--border)" stroke-width="1.3" />`;
+    }
+  }
+
+  parts += `<rect x="${bodyLeft.toFixed(1)}" y="${top}" width="${(bodyRight - bodyLeft).toFixed(1)}" height="${bodyH.toFixed(1)}" rx="3" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5" />`;
+
+  if (foldState.collarFolded) {
+    parts += `<rect x="${(centerX - 9).toFixed(1)}" y="${top}" width="18" height="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1" />`;
+  } else {
+    parts += `<path d="M ${(centerX - 7).toFixed(1)} ${top} L ${centerX} ${(top + 9).toFixed(1)} L ${(centerX + 7).toFixed(1)} ${top}" fill="none" stroke="var(--accent)" stroke-width="1.2" />`;
+  }
+
+  if (foldState.heightScale < 0.95) {
+    parts += `<line x1="${bodyLeft.toFixed(1)}" y1="${bodyBottom.toFixed(1)}" x2="${bodyRight.toFixed(1)}" y2="${bodyBottom.toFixed(1)}" stroke="var(--accent)" stroke-width="1" stroke-dasharray="2 2" />`;
+  }
+
+  return `<svg class="order-item-icon" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <text x="4" y="12" font-size="9" font-weight="700" fill="var(--text-secondary)">${badgeNumber}</text>
+    ${parts}
+  </svg>`;
+}
+
+function renderOrdering(q, card) {
+  const promptEl = document.createElement('div');
+  promptEl.className = 'prompt';
+  promptEl.textContent = q.prompt;
+  card.appendChild(promptEl);
+
+  // shuffle initial order a bit so it's not already correct
+  state.ordering = q.items.map(i => i.id);
+  state.ordering.reverse();
+  state.orderingFoldStates = buildFoldStates(q.items);
+
+  const list = document.createElement('ul');
+  list.className = 'order-list';
+  list.id = 'order-list';
+  card.appendChild(list);
+
+  const hint = document.createElement('div');
+  hint.style.fontSize = '12px';
+  hint.style.color = 'var(--text-secondary)';
+  hint.textContent = '↑↓ボタンで図を正しい順序に並べ替えてください。';
+  card.appendChild(hint);
+
+  renderOrderList(q);
+}
+
+function renderOrderList(q, options) {
+  const opts = options || {};
+  const revealText = !!opts.revealText;
+  const disableAll = !!opts.disableAll;
+  const list = document.getElementById('order-list');
+  list.innerHTML = '';
+  state.ordering.forEach((id, idx) => {
+    const item = q.items.find(i => i.id === id);
+    const foldState = state.orderingFoldStates.find(f => f.id === id);
+    const li = document.createElement('li');
+
+    const main = document.createElement('span');
+    main.className = 'order-item-main';
+    if (item.image) {
+      const img = document.createElement('img');
+      img.className = 'order-item-icon';
+      img.src = `images/${item.image}`;
+      img.alt = `${idx + 1}`;
+      img.loading = 'lazy';
+      main.appendChild(img);
+    } else {
+      main.insertAdjacentHTML('beforeend', kimonoDiagramSVG(foldState, idx + 1));
+    }
+    if (revealText) {
+      const textSpan = document.createElement('span');
+      textSpan.className = 'order-item-text-reveal';
+      textSpan.textContent = item.text;
+      main.appendChild(textSpan);
+    }
+    li.appendChild(main);
+
+    const btnGroup = document.createElement('span');
+    const upBtn = document.createElement('button');
+    upBtn.textContent = '↑';
+    upBtn.disabled = disableAll || idx === 0;
+    upBtn.onclick = () => {
+      [state.ordering[idx - 1], state.ordering[idx]] = [state.ordering[idx], state.ordering[idx - 1]];
+      renderOrderList(q);
+    };
+    const downBtn = document.createElement('button');
+    downBtn.textContent = '↓';
+    downBtn.disabled = disableAll || idx === state.ordering.length - 1;
+    downBtn.onclick = () => {
+      [state.ordering[idx + 1], state.ordering[idx]] = [state.ordering[idx], state.ordering[idx + 1]];
+      renderOrderList(q);
+    };
+    btnGroup.appendChild(upBtn);
+    btnGroup.appendChild(downBtn);
+    li.appendChild(btnGroup);
+    list.appendChild(li);
+  });
+}
+
+function renderTrueFalse(q, card) {
+  const promptEl = document.createElement('div');
+  promptEl.className = 'prompt';
+  promptEl.textContent = q.prompt;
+  card.appendChild(promptEl);
+
+  state.trueFalse = null;
+  const wrap = document.createElement('div');
+  wrap.className = 'tf-buttons';
+  const trueBtn = document.createElement('button');
+  trueBtn.textContent = '〇（正しい）';
+  const falseBtn = document.createElement('button');
+  falseBtn.textContent = '✕（誤り）';
+  trueBtn.onclick = () => {
+    state.trueFalse = true;
+    trueBtn.classList.add('selected');
+    falseBtn.classList.remove('selected');
+  };
+  falseBtn.onclick = () => {
+    state.trueFalse = false;
+    falseBtn.classList.add('selected');
+    trueBtn.classList.remove('selected');
+  };
+  wrap.appendChild(trueBtn);
+  wrap.appendChild(falseBtn);
+  card.appendChild(wrap);
+}
+
+function renderMultiSelect(q, card) {
+  const promptEl = document.createElement('div');
+  promptEl.className = 'prompt';
+  promptEl.textContent = `${q.prompt}（${q.select_count}つ選択）`;
+  card.appendChild(promptEl);
+
+  state.multiSelect = new Set();
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = opt.text;
+    btn.dataset.optId = opt.id;
+    btn.onclick = () => {
+      if (state.multiSelect.has(opt.id)) {
+        state.multiSelect.delete(opt.id);
+        btn.classList.remove('selected');
+      } else if (state.multiSelect.size < q.select_count) {
+        state.multiSelect.add(opt.id);
+        btn.classList.add('selected');
+      }
+    };
+    card.appendChild(btn);
+  });
+}
+
+function renderSingleChoice(q, card) {
+  const promptEl = document.createElement('div');
+  promptEl.className = 'prompt';
+  promptEl.textContent = q.prompt;
+  card.appendChild(promptEl);
+
+  state.singleChoice = null;
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = opt.text;
+    btn.dataset.optId = opt.id;
+    btn.onclick = () => {
+      state.singleChoice = opt.id;
+      card.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    };
+    card.appendChild(btn);
+  });
+}
+
+// ---------- Grading ----------
+
+function gradeQuestion(q) {
+  switch (q.type) {
+    case 'matching': {
+      const ok = q.items.every(item => state.matching[item.id] === q.answer[item.id]);
+      return ok;
+    }
+    case 'fill_blank': {
+      const ok = Object.keys(q.answer).every(bid => state.fillBlank[bid] === q.answer[bid]);
+      return ok;
+    }
+    case 'ordering': {
+      const ok = q.answer.length === state.ordering.length &&
+        q.answer.every((id, idx) => id === state.ordering[idx]);
+      return ok;
+    }
+    case 'true_false': {
+      return state.trueFalse === q.answer;
+    }
+    case 'multi_select': {
+      const selected = [...state.multiSelect].sort();
+      const correct = [...q.correct_option_ids].sort();
+      const ok = selected.length === correct.length && selected.every((v, i) => v === correct[i]);
+      return ok;
+    }
+    case 'single_choice': {
+      return state.singleChoice === q.correct_option_id;
+    }
+  }
+}
+
+function isAnswerComplete(q) {
+  switch (q.type) {
+    case 'matching':
+      return q.items.every(item => state.matching[item.id]);
+    case 'fill_blank':
+      return Object.keys(q.answer).every(bid => state.fillBlank[bid]);
+    case 'ordering':
+      return true;
+    case 'true_false':
+      return state.trueFalse !== null;
+    case 'multi_select':
+      return state.multiSelect.size === q.select_count;
+    case 'single_choice':
+      return state.singleChoice !== null;
+  }
+}
+
+function submitAnswer(q) {
+  if (answered) return;
+  if (!isAnswerComplete(q)) {
+    alert('すべての項目に回答してください。');
+    return;
+  }
+  answered = true;
+  const ok = gradeQuestion(q);
+  score.total += 1;
+  if (ok) score.correct += 1;
+  else sessionWrong.push(q);
+  recordHistory(q.id, ok, q.theme_id);
+  document.getElementById('score').textContent =
+    `現在のスコア: ${score.correct} / ${score.total} 問正解`;
+
+  // highlight correct/wrong for choice-based types
+  highlightAnswer(q);
+
+  const resultEl = document.getElementById('result');
+  resultEl.className = ok ? 'ok' : 'ng';
+  resultEl.style.display = 'block';
+  resultEl.innerHTML = `
+    <h3>${ok ? '正解です！' : '不正解です'}</h3>
+    <p>${q.explanation}</p>
+  `;
+
+  const controls = document.getElementById('controls');
+  controls.innerHTML = current < questions.length - 1
+    ? `<button class="main" id="next-btn">次の問題へ</button>`
+    : `<button class="main" id="next-btn">結果を見る</button>`;
+  document.getElementById('next-btn').onclick = () => {
+    if (current < questions.length - 1) {
+      current += 1;
+      showQuestion();
+    } else {
+      showFinalResult();
+    }
+  };
+}
+
+function highlightAnswer(q) {
+  if (q.type === 'single_choice') {
+    document.querySelectorAll('.choice-btn').forEach(btn => {
+      btn.disabled = true;
+      if (btn.dataset.optId === q.correct_option_id) btn.classList.add('correct');
+      else if (btn.dataset.optId === state.singleChoice) btn.classList.add('wrong');
+    });
+  } else if (q.type === 'multi_select') {
+    document.querySelectorAll('.choice-btn').forEach(btn => {
+      btn.disabled = true;
+      const id = btn.dataset.optId;
+      if (q.correct_option_ids.includes(id)) btn.classList.add('correct');
+      else if (state.multiSelect.has(id)) btn.classList.add('wrong');
+    });
+  } else if (q.type === 'true_false') {
+    document.querySelectorAll('.tf-buttons button').forEach(b => b.disabled = true);
+  } else if (q.type === 'matching' || q.type === 'fill_blank') {
+    document.querySelectorAll('select').forEach(s => s.disabled = true);
+  } else if (q.type === 'ordering') {
+    renderOrderList(q, { revealText: true, disableAll: true });
+  }
+}
+
+function showFinalResult() {
+  document.getElementById('meta').textContent = '';
+
+  const percent = score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0;
+
+  const wrongListHtml = sessionWrong.length > 0
+    ? `<h4>間違えた問題（${sessionWrong.length}問）</h4>
+       <div class="wrong-list">
+         ${sessionWrong.map(q => `
+           <div class="wrong-item">
+             <span class="wrong-item-theme">${escapeHtml(themeName(q.theme_id))}</span>
+             <span class="wrong-item-text">${escapeHtml(questionText(q))}</span>
+           </div>
+         `).join('')}
+       </div>`
+    : `<div class="result-allcorrect">✓ 今回は全問正解でした！</div>`;
+
+  document.getElementById('quiz-card').innerHTML = `
+    <h3>お疲れさまでした</h3>
+    <div class="result-summary">
+      <div><span class="result-score-num">${score.correct} / ${score.total}</span><span class="result-score-label">問正解</span></div>
+      <div class="result-percent">正答率 ${percent}%</div>
+    </div>
+    ${wrongListHtml}
+  `;
+  document.getElementById('result').style.display = 'none';
+
+  const finishedQuestions = questions;
+  let controlsHtml = `<button class="main" id="restart-btn">同じ問題でもう一度</button>`;
+  if (sessionWrong.length > 0) {
+    controlsHtml += `<button class="main review" id="retry-wrong-btn">間違えた問題だけをもう一度解く</button>`;
+  }
+  controlsHtml += `<button class="main secondary" id="back-start-btn">テーマ選択に戻る</button>`;
+  document.getElementById('controls').innerHTML = controlsHtml;
+
+  document.getElementById('restart-btn').onclick = () => startQuiz(finishedQuestions);
+  if (sessionWrong.length > 0) {
+    document.getElementById('retry-wrong-btn').onclick = () => startQuiz([...sessionWrong]);
+  }
+  document.getElementById('back-start-btn').onclick = () => showStartScreen();
+}
+
+init();
+</script>
+</body>
+</html>
