@@ -221,17 +221,11 @@
     border-radius: var(--radius-sm);
     background: var(--surface);
     display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .order-item-main {
-    display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
-    flex: 1;
-    min-width: 0;
+    gap: 10px 14px;
   }
+  .order-item-main { flex: 0 0 auto; }
   .order-item-icon {
     flex-shrink: 0;
     width: 116px;
@@ -245,33 +239,58 @@
     border-radius: var(--radius-sm);
     padding: 4px;
   }
-  .order-item-text-reveal {
-    flex-basis: 100%;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    min-width: 0;
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text);
-    margin-top: 2px;
+  .order-num-group {
+    flex: 1 1 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
   }
-  @media (max-width: 480px) {
-    .order-item-icon { width: 96px; height: 73px; }
-  }
-  .order-list button {
+  .order-num-btn {
     min-width: 44px;
     min-height: 44px;
-    font-size: 16px;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: inherit;
     border-radius: var(--radius-sm);
     border: 1px solid var(--border);
     background: var(--surface);
     color: var(--text);
-    flex-shrink: 0;
     cursor: pointer;
     transition: border-color .15s ease, background .15s ease;
   }
-  .order-list button:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
-  .order-list button:disabled { opacity: .35; cursor: default; }
+  .order-num-btn:hover { border-color: var(--accent); }
+  .order-num-btn.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .order-list li.order-reveal {
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+  }
+  .order-reveal-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .order-result { text-align: right; font-size: 14px; line-height: 1.6; }
+  .order-result-correct { font-weight: 700; color: var(--text); }
+  .order-result.ok .order-result-user { color: #146b39; font-weight: 600; }
+  .order-result.ng .order-result-user { color: var(--danger); font-weight: 600; }
+  .order-item-text-reveal {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+  @media (max-width: 480px) {
+    .order-item-icon { width: 96px; height: 73px; }
+    .order-num-group { justify-content: flex-start; }
+  }
   .tf-buttons { display: flex; gap: 12px; }
   .tf-buttons button {
     flex: 1;
@@ -776,15 +795,27 @@ function kimonoDiagramSVG(foldState, badgeNumber) {
   </svg>`;
 }
 
+function shuffledIds(items, answer) {
+  const ids = items.map(i => i.id);
+  for (let attempt = 0; attempt < 20; attempt++) {
+    for (let i = ids.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [ids[i], ids[j]] = [ids[j], ids[i]];
+    }
+    if (ids.some((id, idx) => id !== answer[idx])) break;
+  }
+  return ids;
+}
+
 function renderOrdering(q, card) {
   const promptEl = document.createElement('div');
   promptEl.className = 'prompt';
   promptEl.textContent = q.prompt;
   card.appendChild(promptEl);
 
-  // shuffle initial order a bit so it's not already correct
-  state.ordering = q.items.map(i => i.id);
-  state.ordering.reverse();
+  state.orderDisplay = shuffledIds(q.items, q.answer);
+  state.orderNumbers = {};
+  q.items.forEach(i => { state.orderNumbers[i.id] = null; });
   state.orderingFoldStates = buildFoldStates(q.items);
 
   const list = document.createElement('ul');
@@ -795,61 +826,78 @@ function renderOrdering(q, card) {
   const hint = document.createElement('div');
   hint.style.fontSize = '12px';
   hint.style.color = 'var(--text-secondary)';
-  hint.textContent = '↑↓ボタンで図を正しい順序に並べ替えてください。';
+  hint.textContent = `各図に、正しい順番の番号（1〜${q.items.length}）を選んでください。同じ番号を別の図に選ぶと、元の図の番号は外れます。`;
   card.appendChild(hint);
 
   renderOrderList(q);
 }
 
+function orderImageHtml(item, foldState) {
+  if (item.image) {
+    return `<img class="order-item-icon" src="images/${escapeHtml(item.image)}" alt="図" loading="lazy">`;
+  }
+  return kimonoDiagramSVG(foldState, '');
+}
+
 function renderOrderList(q, options) {
-  const opts = options || {};
-  const revealText = !!opts.revealText;
-  const disableAll = !!opts.disableAll;
+  const reveal = !!(options && options.reveal);
   const list = document.getElementById('order-list');
   list.innerHTML = '';
-  state.ordering.forEach((id, idx) => {
+
+  if (reveal) {
+    q.answer.forEach((id, idx) => {
+      const item = q.items.find(i => i.id === id);
+      const foldState = state.orderingFoldStates.find(f => f.id === id);
+      const userNum = state.orderNumbers[id];
+      const ok = userNum === idx + 1;
+      const li = document.createElement('li');
+      li.className = 'order-reveal';
+      li.innerHTML = `
+        <div class="order-reveal-top">
+          ${orderImageHtml(item, foldState)}
+          <div class="order-result ${ok ? 'ok' : 'ng'}">
+            <div class="order-result-correct">正解：${idx + 1}番</div>
+            <div class="order-result-user">あなたの回答：${userNum}番 ${ok ? '○' : '✕'}</div>
+          </div>
+        </div>
+        <div class="order-item-text-reveal">${escapeHtml(item.text)}</div>
+      `;
+      list.appendChild(li);
+    });
+    return;
+  }
+
+  state.orderDisplay.forEach(id => {
     const item = q.items.find(i => i.id === id);
     const foldState = state.orderingFoldStates.find(f => f.id === id);
     const li = document.createElement('li');
 
     const main = document.createElement('span');
     main.className = 'order-item-main';
-    if (item.image) {
-      const img = document.createElement('img');
-      img.className = 'order-item-icon';
-      img.src = `images/${item.image}`;
-      img.alt = `${idx + 1}`;
-      img.loading = 'lazy';
-      main.appendChild(img);
-    } else {
-      main.insertAdjacentHTML('beforeend', kimonoDiagramSVG(foldState, idx + 1));
-    }
-    if (revealText) {
-      const textSpan = document.createElement('span');
-      textSpan.className = 'order-item-text-reveal';
-      textSpan.textContent = item.text;
-      main.appendChild(textSpan);
-    }
+    main.innerHTML = orderImageHtml(item, foldState);
     li.appendChild(main);
 
-    const btnGroup = document.createElement('span');
-    const upBtn = document.createElement('button');
-    upBtn.textContent = '↑';
-    upBtn.disabled = disableAll || idx === 0;
-    upBtn.onclick = () => {
-      [state.ordering[idx - 1], state.ordering[idx]] = [state.ordering[idx], state.ordering[idx - 1]];
-      renderOrderList(q);
-    };
-    const downBtn = document.createElement('button');
-    downBtn.textContent = '↓';
-    downBtn.disabled = disableAll || idx === state.ordering.length - 1;
-    downBtn.onclick = () => {
-      [state.ordering[idx + 1], state.ordering[idx]] = [state.ordering[idx], state.ordering[idx + 1]];
-      renderOrderList(q);
-    };
-    btnGroup.appendChild(upBtn);
-    btnGroup.appendChild(downBtn);
-    li.appendChild(btnGroup);
+    const group = document.createElement('div');
+    group.className = 'order-num-group';
+    for (let n = 1; n <= q.items.length; n++) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'order-num-btn' + (state.orderNumbers[id] === n ? ' selected' : '');
+      btn.textContent = n;
+      btn.onclick = () => {
+        if (state.orderNumbers[id] === n) {
+          state.orderNumbers[id] = null;
+        } else {
+          Object.keys(state.orderNumbers).forEach(other => {
+            if (state.orderNumbers[other] === n) state.orderNumbers[other] = null;
+          });
+          state.orderNumbers[id] = n;
+        }
+        renderOrderList(q);
+      };
+      group.appendChild(btn);
+    }
+    li.appendChild(group);
     list.appendChild(li);
   });
 }
@@ -898,7 +946,13 @@ function renderMultiSelect(q, card) {
       if (state.multiSelect.has(opt.id)) {
         state.multiSelect.delete(opt.id);
         btn.classList.remove('selected');
-      } else if (state.multiSelect.size < q.select_count) {
+      } else {
+        if (state.multiSelect.size >= q.select_count) {
+          const oldest = state.multiSelect.values().next().value;
+          state.multiSelect.delete(oldest);
+          const oldBtn = card.querySelector(`.choice-btn[data-opt-id="${oldest}"]`);
+          if (oldBtn) oldBtn.classList.remove('selected');
+        }
         state.multiSelect.add(opt.id);
         btn.classList.add('selected');
       }
@@ -941,8 +995,10 @@ function gradeQuestion(q) {
       return ok;
     }
     case 'ordering': {
-      const ok = q.answer.length === state.ordering.length &&
-        q.answer.every((id, idx) => id === state.ordering[idx]);
+      const sorted = Object.keys(state.orderNumbers)
+        .sort((a, b) => state.orderNumbers[a] - state.orderNumbers[b]);
+      const ok = q.answer.length === sorted.length &&
+        q.answer.every((id, idx) => id === sorted[idx]);
       return ok;
     }
     case 'true_false': {
@@ -967,7 +1023,7 @@ function isAnswerComplete(q) {
     case 'fill_blank':
       return Object.keys(q.answer).every(bid => state.fillBlank[bid]);
     case 'ordering':
-      return true;
+      return q.items.every(i => state.orderNumbers[i.id] !== null);
     case 'true_false':
       return state.trueFalse !== null;
     case 'multi_select':
@@ -1036,7 +1092,7 @@ function highlightAnswer(q) {
   } else if (q.type === 'matching' || q.type === 'fill_blank') {
     document.querySelectorAll('select').forEach(s => s.disabled = true);
   } else if (q.type === 'ordering') {
-    renderOrderList(q, { revealText: true, disableAll: true });
+    renderOrderList(q, { reveal: true });
   }
 }
 
